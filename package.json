@@ -1,0 +1,31 @@
+{
+  "name": "bigbluebutton-js",
+  "version": "0.0.1",
+  "description": "JavaScript wrapper for BigBlueButton API",
+  "private": false,
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/aakatev/bigbluebutton-js.git"
+  },
+  "keywords": [
+    "bigbluebutton",
+    "bbb",
+    "api"
+  ],
+  "author": "Artem Akatev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aakatev/bigbluebutton-js/issues"
+  },
+  "homepage": "https://github.com/aakatev/bigbluebutton-js/#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "sha1": "^1.1.1",
+    "xml2js-es6-promise": "^1.1.1"
+  }
+}
