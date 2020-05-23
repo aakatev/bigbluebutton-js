@@ -48,17 +48,132 @@ Note that required parameters should be passed as function arguments, while opti
 
 ### Administration
 
-create - creates a new meeting.
+create - create a new meeting.
 
 Parameters
 
-| Parameter   | Required/Otional |
-| ----------- | ---------------- |
-| name        | required         |
-| meetingId   | required         |
-| attendeePW  | optional         |
-| moderatorPW | optional         |
-| welcome     | optional         |
-| dialNumber  | optional         |
-| name        | optional         |
-| meetingId   | optional         |
+| Parameter                          | Required/Otional |
+| ---------------------------------- | ---------------- |
+| name                               | required         |
+| meetingId                          | required         |
+| attendeePW                         | optional         |
+| moderatorPW                        | optional         |
+| welcome                            | optional         |
+| dialNumber                         | optional         |
+| voiceBridge                        | optional         |
+| maxParticipants                    | optional         |
+| logoutURL                          | optional         |
+| record                             | optional         |
+| duration                           | optional         |
+| isBreakout                         | optional         |
+| parentMeetingID                    | optional         |
+| sequence                           | optional         |
+| freeJoin                           | optional         |
+| meta                               | optional         |
+| moderatorOnlyMessage               | optional         |
+| autoStartRecording                 | optional         |
+| allowStartStopRecording            | optional         |
+| webcamsOnlyForModerator            | optional         |
+| logo                               | optional         |
+| bannerText                         | optional         |
+| bannerColor                        | optional         |
+| copyright                          | optional         |
+| muteOnStart                        | optional         |
+| allowModsToUnmuteUsers             | optional         |
+| lockSettingsDisableCam             | optional         |
+| lockSettingsDisableMic             | optional         |
+| lockSettingsDisablePrivateChat     | optional         |
+| lockSettingsDisablePublicChat      | optional         |
+| lockSettingsDisableNote            | optional         |
+| lockSettingsLockedLayout           | optional         |
+| lockSettingsLockOnJoin             | optional         |
+| lockSettingsLockOnJoinConfigurable | optional         |
+| guestPolicy                        | optional         |
+
+join - join an existing meeting.
+
+Parameters
+
+| Parameter     | Required/Otional |
+| ------------- | ---------------- |
+| fullName      | required         |
+| meetingId     | required         |
+| password      | required         |
+| createTime    | optional         |
+| userID        | optional         |
+| webVoiceConf  | optional         |
+| configToken   | optional         |
+| defaultLayout | optional         |
+| avatarURL     | optional         |
+| redirect      | optional         |
+| clientURL     | optional         |
+| joinViaHtml5  | optional         |
+| guest         | optional         |
+
+end - forcefully end an existing meeting.
+
+Parameters
+
+| Parameter | Required/Otional |
+| --------- | ---------------- |
+| meetingId | required         |
+| password  | required         |
+
+### Monitoring
+
+isMeetingRunning - check whether a meeting is running.
+
+Parameters
+
+| Parameter | Required/Otional |
+| --------- | ---------------- |
+| meetingId | required         |
+
+getMeetings - get the list of a existing meetings.
+
+getMeetingInfo - get details of an existing meeting.
+
+Parameters
+
+| Parameter | Required/Otional |
+| --------- | ---------------- |
+| meetingId | required         |
+
+### Recording
+
+getRecordings - get list of recordinngs.
+
+Parameters
+
+| Parameter | Required/Otional |
+| --------- | ---------------- |
+| meetingId | optional         |
+| recordID  | optional         |
+| state     | required         |
+| meta      | optional         |
+
+publishRecordings - set publishing/unpublishing of a recording.
+
+Parameters
+
+| Parameter | Required/Otional |
+| --------- | ---------------- |
+| recordID  | required         |
+| publish   | required         |
+
+deleteRecordings - delete an existing recording.
+
+Parameters
+
+| Parameter | Required/Otional |
+| --------- | ---------------- |
+| recordID  | required         |
+
+updateRecordings - update recording metadata.
+
+Parameters
+
+| Parameter | Required/Otional |
+| --------- | ---------------- |
+| recordID  | required         |
+| meta      | optional         |
