@@ -46,7 +46,11 @@ bbb.http(meetingCreateUrl).then((result) => {
 
 Note that required parameters should be passed as function arguments, while optional can be passed as options object. More information is available in this section of [BBB docs](https://docs.bigbluebutton.org/dev/api.html#api-calls).
 
+---
+
 ### Administration
+
+---
 
 create - create a new meeting.
 
@@ -90,6 +94,8 @@ Parameters
 | lockSettingsLockOnJoinConfigurable | optional         |
 | guestPolicy                        | optional         |
 
+---
+
 join - join an existing meeting.
 
 Parameters
@@ -110,6 +116,8 @@ Parameters
 | joinViaHtml5  | optional         |
 | guest         | optional         |
 
+---
+
 end - forcefully end an existing meeting.
 
 Parameters
@@ -119,7 +127,11 @@ Parameters
 | meetingId | required         |
 | password  | required         |
 
+---
+
 ### Monitoring
+
+---
 
 isMeetingRunning - check whether a meeting is running.
 
@@ -129,7 +141,9 @@ Parameters
 | --------- | ---------------- |
 | meetingId | required         |
 
-getMeetings - get the list of a existing meetings.
+---
+
+## getMeetings - get the list of a existing meetings.
 
 getMeetingInfo - get details of an existing meeting.
 
@@ -139,7 +153,11 @@ Parameters
 | --------- | ---------------- |
 | meetingId | required         |
 
+---
+
 ### Recording
+
+---
 
 getRecordings - get list of recordinngs.
 
@@ -152,6 +170,8 @@ Parameters
 | state     | required         |
 | meta      | optional         |
 
+---
+
 publishRecordings - set publishing/unpublishing of a recording.
 
 Parameters
@@ -161,6 +181,8 @@ Parameters
 | recordID  | required         |
 | publish   | required         |
 
+---
+
 deleteRecordings - delete an existing recording.
 
 Parameters
@@ -168,6 +190,8 @@ Parameters
 | Parameter | Required/Otional |
 | --------- | ---------------- |
 | recordID  | required         |
+
+---
 
 updateRecordings - update recording metadata.
 
@@ -177,3 +201,13 @@ Parameters
 | --------- | ---------------- |
 | recordID  | required         |
 | meta      | optional         |
+
+---
+
+## License
+
+This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details
+
+## Acknowledgments
+
+- Project started as a fork of [bbb-promise](https://www.npmjs.com/package/bbb-promise)
