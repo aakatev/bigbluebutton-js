@@ -1,13 +1,16 @@
 'use strict'
-const util = require('util')
+
 const axios = require('axios')
 const querystring = require('querystring')
-const sha1 = require('sha1')
+const crypto = require('crypto')
 const xml2js = require('xml2js-es6-promise')
 
 function checksum(callName, qparams, salt) {
   let qstring = querystring.stringify(qparams)
-  return sha1(callName + qstring + salt)
+  return crypto
+    .createHash('sha1')
+    .update(callName + qstring + salt)
+    .digest('hex')
 }
 
 function GETAction(host, salt, action, params) {
