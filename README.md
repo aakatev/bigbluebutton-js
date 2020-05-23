@@ -143,7 +143,9 @@ Parameters
 
 ---
 
-## getMeetings - get the list of a existing meetings.
+getMeetings - get the list of a existing meetings.
+
+---
 
 getMeetingInfo - get details of an existing meeting.
 
