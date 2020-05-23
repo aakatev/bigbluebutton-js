@@ -3,7 +3,7 @@
 const axios = require('axios')
 const querystring = require('querystring')
 const crypto = require('crypto')
-const xml2js = require('xml2js-es6-promise')
+const parser = require('fast-xml-parser')
 
 function checksum(callName, qparams, salt) {
   let qstring = querystring.stringify(qparams)
@@ -24,7 +24,7 @@ function GETAction(host, salt, action, params) {
   return request
     .then((response) => response.data)
     .then(function (meeting) {
-      return xml2js(meeting)
+      return parser.parse(meeting)
     })
 }
 

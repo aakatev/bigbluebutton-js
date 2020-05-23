@@ -25,6 +25,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
-    "xml2js-es6-promise": "^1.1.1"
+    "fast-xml-parser": "^3.17.2"
   }
 }
