@@ -8,19 +8,19 @@ function monitoring(host, salt) {
       meetingID: meetingID,
     }
 
-    return util.getUrl(host, salt, 'getMeetingInfo', qparams)
+    return util.constructUrl(host, salt, 'getMeetingInfo', qparams)
   }
   function isMeetingRunning(meetingID) {
     let qparams = {
       meetingID: meetingID,
     }
 
-    return util.getUrl(host, salt, 'isMeetingRunning', qparams)
+    return util.constructUrl(host, salt, 'isMeetingRunning', qparams)
   }
   function getMeetings() {
     let qparams = {}
 
-    return util.getUrl(host, salt, 'getMeetings', qparams)
+    return util.constructUrl(host, salt, 'getMeetings', qparams)
   }
   return {
     getMeetingInfo,

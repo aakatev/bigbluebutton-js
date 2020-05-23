@@ -6,7 +6,7 @@ function recording(host, salt) {
   function getRecordings(kwparams) {
     kwparams = { ...kwparams }
 
-    return util.getUrl(host, salt, 'getRecordings', kwparams)
+    return util.constructUrl(host, salt, 'getRecordings', kwparams)
   }
   function publishRecordings(recordID, publish) {
     let qparams = {
@@ -14,21 +14,21 @@ function recording(host, salt) {
       publish: publish,
     }
 
-    return util.getUrl(host, salt, 'publishRecordings', qparams)
+    return util.constructUrl(host, salt, 'publishRecordings', qparams)
   }
   function deleteRecordings(recordID) {
     let qparams = {
       recordID: recordID,
     }
 
-    return util.getUrl(host, salt, 'deleteRecordings', qparams)
+    return util.constructUrl(host, salt, 'deleteRecordings', qparams)
   }
   function updateRecordings(recordID, kwparams) {
     kwparams = { ...kwparams }
 
     kwparams.recordID = recordID
 
-    return util.getUrl(host, salt, 'updateRecordings', kwparams)
+    return util.constructUrl(host, salt, 'updateRecordings', kwparams)
   }
   return {
     getRecordings,

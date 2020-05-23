@@ -5,16 +5,15 @@ const querystring = require('querystring')
 const crypto = require('crypto')
 const parser = require('fast-xml-parser')
 
-function checksum(callName, qparams, salt) {
-  let qstring = querystring.stringify(qparams)
+function getChecksum(callName, queryParams, sharedSecret) {
   return crypto
     .createHash('sha1')
-    .update(callName + qstring + salt)
+    .update(`${callName}${querystring.encode(queryParams)}${sharedSecret}`)
     .digest('hex')
 }
 
-function getUrl(host, salt, action, params) {
-  params.checksum = checksum(action, params, salt)
+function constructUrl(host, salt, action, params) {
+  params.checksum = getChecksum(action, params, salt)
   return `${host}/api/${action}?${querystring.encode(params)}`
 }
 
@@ -27,7 +26,6 @@ function httpClient(url) {
 }
 
 module.exports = {
-  checksum,
   httpClient,
-  getUrl,
+  constructUrl,
 }

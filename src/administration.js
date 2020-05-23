@@ -8,7 +8,7 @@ function administration(host, salt) {
     kwparams.name = name
     kwparams.meetingID = id
 
-    return util.getUrl(host, salt, 'create', kwparams)
+    return util.constructUrl(host, salt, 'create', kwparams)
   }
   function join(fullName, meetingID, password, kwparams) {
     kwparams = { ...kwparams }
@@ -16,14 +16,14 @@ function administration(host, salt) {
     kwparams.meetingID = meetingID
     kwparams.password = password
 
-    return util.getUrl(host, salt, 'join', kwparams)
+    return util.constructUrl(host, salt, 'join', kwparams)
   }
   function end(meetingID, password) {
     let kwparams = {
       meetingID: meetingID,
       password: password,
     }
-    return util.getUrl(host, salt, 'end', kwparams)
+    return util.constructUrl(host, salt, 'end', kwparams)
   }
   return {
     create,

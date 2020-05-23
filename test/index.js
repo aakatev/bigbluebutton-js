@@ -1,7 +1,7 @@
 require('dotenv').config()
-var bbb = require('../')
+const bbb = require('../')
 
-var server = bbb.server(process.env.BBB_URL, process.env.BBB_SECRET)
+let api = bbb.api(process.env.BBB_URL, process.env.BBB_SECRET)
 
 var options = {
   record: false,
@@ -10,12 +10,12 @@ var options = {
   moderatorPW: 'supersecret',
 }
 
-let room = server.administration.create('Test Room', '1', options)
+let room = api.administration.create('Test Room', '1', options)
 
-let moderator = server.administration.join('Moderator', '1', 'supersecret')
-let attendee = server.administration.join('Attendee', '1', 'secret')
+let moderator = api.administration.join('Moderator', '1', 'supersecret')
+let attendee = api.administration.join('Attendee', '1', 'secret')
 
-let meetingInfo = server.monitoring.getMeetingInfo('1')
-let meetings = server.monitoring.getMeetings()
+let meetingInfo = api.monitoring.getMeetingInfo('1')
+let meetings = api.monitoring.getMeetings()
 
 console.log(room, moderator, attendee, meetingInfo, meetings)

@@ -1,3 +1,6 @@
 'use strict'
 
-module.exports = require('./server')
+module.exports = {
+  ...require('./api'),
+  http: require('./util').httpClient,
+}
