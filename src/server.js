@@ -1,23 +1,13 @@
 'use strict'
 
-const admin = require('./administration')
-const monitor = require('./monitoring')
-const rec = require('./recording')
-
-function createServer(host, salt) {
-  let administration = admin(host, salt)
-  let monitoring = monitor(host, salt)
-  let recording = rec(host, salt)
-
-  let server = {
-    administration,
-    monitoring,
-    recording,
+function server(host, salt) {
+  return {
+    administration: require('./administration')(host, salt),
+    monitoring: require('./monitoring')(host, salt),
+    recording: require('./recording')(host, salt),
   }
-
-  return server
 }
 
 module.exports = {
-  server: createServer,
+  server,
 }
