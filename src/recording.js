@@ -3,38 +3,39 @@
 const util = require('./util')
 
 function recording(host, salt) {
-  let rec = {
-    host: host,
-    salt: salt,
-    getRecordings: function (kwparams) {
-      kwparams = { ...kwparams }
+  function getRecordings(kwparams) {
+    kwparams = { ...kwparams }
 
-      return util.GETAction(this.host, this.salt, 'getRecordings', kwparams)
-    },
-    publishRecordings: function (recordID, publish) {
-      let qparams = {
-        recordID: recordID,
-        publish: publish,
-      }
-
-      return util.GETAction(this.host, this.salt, 'publishRecordings', qparams)
-    },
-    deleteRecordings: function (recordID) {
-      let qparams = {
-        recordID: recordID,
-      }
-
-      return util.GETAction(this.host, this.salt, 'deleteRecordings', qparams)
-    },
-    updateRecordings: function (recordID, kwparams) {
-      kwparams = { ...kwparams }
-
-      kwparams.recordID = recordID
-
-      return util.GETAction(this.host, this.salt, 'updateRecordings', kwparams)
-    },
+    return util.getUrl(host, salt, 'getRecordings', kwparams)
   }
-  return rec
+  function publishRecordings(recordID, publish) {
+    let qparams = {
+      recordID: recordID,
+      publish: publish,
+    }
+
+    return util.getUrl(host, salt, 'publishRecordings', qparams)
+  }
+  function deleteRecordings(recordID) {
+    let qparams = {
+      recordID: recordID,
+    }
+
+    return util.getUrl(host, salt, 'deleteRecordings', qparams)
+  }
+  function updateRecordings(recordID, kwparams) {
+    kwparams = { ...kwparams }
+
+    kwparams.recordID = recordID
+
+    return util.getUrl(host, salt, 'updateRecordings', kwparams)
+  }
+  return {
+    getRecordings,
+    publishRecordings,
+    deleteRecordings,
+    updateRecordings,
+  }
 }
 
 module.exports = recording

@@ -1,39 +1,21 @@
 require('dotenv').config()
 var bbb = require('../')
+
 var server = bbb.server(process.env.BBB_URL, process.env.BBB_SECRET)
-const util = require('util')
 
-var extra_params = {
-  record: true,
-  duration: 1,
-  attendeePW: 'customAttendeePassword',
-  moderatorPW: 'customModeratorPassword',
+var options = {
+  record: false,
+  duration: 2,
+  attendeePW: 'secret',
+  moderatorPW: 'supersecret',
 }
-var room = server.administration.create(
-  'Example Room',
-  'someroomid',
-  extra_params
-)
 
-room.then(function (meeting) {
-  console.log(util.inspect(meeting, { showHidden: false, depth: null }))
+let room = server.administration.create('Test Room', '1', options)
 
-  var response = meeting.response
-  console.log(
-    'Use this url to enter as a moderator: ' +
-      server.administration.join(
-        'Someone Special',
-        response.meetingID[0],
-        response.moderatorPW[0]
-      )
-  )
+let moderator = server.administration.join('Moderator', '1', 'supersecret')
+let attendee = server.administration.join('Attendee', '1', 'secret')
 
-  console.log(
-    'Use this url to enter as an attendee: ' +
-      server.administration.join(
-        'Not so Special',
-        response.meetingID[0],
-        response.attendeePW[0]
-      )
-  )
-})
+let meetingInfo = server.monitoring.getMeetingInfo('1')
+let meetings = server.monitoring.getMeetings()
+
+console.log(room, moderator, attendee, meetingInfo, meetings)

@@ -13,15 +13,13 @@ function checksum(callName, qparams, salt) {
     .digest('hex')
 }
 
-function GETAction(host, salt, action, params) {
-  let cs = checksum(action, params, salt)
+function getUrl(host, salt, action, params) {
+  params.checksum = checksum(action, params, salt)
+  return `${host}/api/${action}?${querystring.encode(params)}`
+}
 
-  params.checksum = cs
-
-  let url = `${host}/api/${action}?${querystring.encode(params)}`
-  let request = axios(url)
-
-  return request
+function httpClient(url) {
+  return axios(url)
     .then((response) => response.data)
     .then(function (meeting) {
       return parser.parse(meeting)
@@ -29,6 +27,7 @@ function GETAction(host, salt, action, params) {
 }
 
 module.exports = {
-  checksum: checksum,
-  GETAction: GETAction,
+  checksum,
+  httpClient,
+  getUrl,
 }
