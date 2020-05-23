@@ -20,8 +20,8 @@ function constructUrl(host, salt, action, params) {
 function httpClient(url) {
   return axios(url)
     .then((response) => response.data)
-    .then(function (meeting) {
-      return parser.parse(meeting)
+    .then(function (xml) {
+      return parser.parse(xml).response
     })
 }
 
