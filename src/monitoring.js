@@ -3,31 +3,30 @@
 const util = require('./util')
 
 function monitoring(host, salt) {
-  let mon = {
-    host: host,
-    salt: salt,
-    getMeetingInfo: function (meetingID) {
-      let qparams = {
-        meetingID: meetingID,
-      }
+  function getMeetingInfo(meetingID) {
+    let qparams = {
+      meetingID: meetingID,
+    }
 
-      return util.GETAction(this.host, this.salt, 'getMeetingInfo', qparams)
-    },
-    isMeetingRunning: function (meetingID) {
-      let qparams = {
-        meetingID: meetingID,
-      }
-
-      return util.GETAction(this.host, this.salt, 'isMeetingRunning', qparams)
-    },
-    getMeetings: function () {
-      let qparams = {}
-
-      return util.GETAction(this.host, this.salt, 'getMeetings', qparams)
-    },
+    return util.getUrl(host, salt, 'getMeetingInfo', qparams)
   }
+  function isMeetingRunning(meetingID) {
+    let qparams = {
+      meetingID: meetingID,
+    }
 
-  return mon
+    return util.getUrl(host, salt, 'isMeetingRunning', qparams)
+  }
+  function getMeetings() {
+    let qparams = {}
+
+    return util.getUrl(host, salt, 'getMeetings', qparams)
+  }
+  return {
+    getMeetingInfo,
+    isMeetingRunning,
+    getMeetings,
+  }
 }
 
 module.exports = monitoring

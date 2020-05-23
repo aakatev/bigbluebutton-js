@@ -10,9 +10,9 @@ function createServer(host, salt) {
   let recording = rec(host, salt)
 
   let server = {
-    administration: administration,
-    monitoring: monitoring,
-    recording: recording,
+    administration,
+    monitoring,
+    recording,
   }
 
   return server
