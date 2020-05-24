@@ -1,8 +1,24 @@
-# bigbluebutton-js
+# bigbluebutton-js <!-- omit in toc -->
 
 JavaScript layer to interact with BigBlueButton [API](https://docs.bigbluebutton.org/dev/api). Supports [WebHooks](https://docs.bigbluebutton.org/dev/webhooks.html).
 
-Features:
+## Overview <!-- omit in toc -->
+
+The document has several parts:
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [WebHooks](#webhooks)
+- [Available Calls](#available-calls)
+  - [Administration](#administration)
+  - [Monitoring](#monitoring)
+  - [Recording](#recording)
+  - [WebHooks](#webhooks-1)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+## Features
 
 - Provides methods to construct URLs;
 - Provides HTTP client that converts XML responses to JS objects.
@@ -58,13 +74,9 @@ For more information consult BBB official [docs](https://docs.bigbluebutton.org/
 
 Note that required parameters should be passed as function arguments, while optional can be passed as options object. More information is available in this section of [BBB docs](https://docs.bigbluebutton.org/dev/api.html#api-calls).
 
----
-
 ### Administration
 
----
-
-create - create a new meeting.
+1. **create** - create a new meeting.
 
 Parameters
 
@@ -106,9 +118,7 @@ Parameters
 | lockSettingsLockOnJoinConfigurable | optional         |
 | guestPolicy                        | optional         |
 
----
-
-join - join an existing meeting.
+2. **join** - join an existing meeting.
 
 Parameters
 
@@ -128,9 +138,7 @@ Parameters
 | joinViaHtml5  | optional         |
 | guest         | optional         |
 
----
-
-end - forcefully end an existing meeting.
+3. **end** - forcefully end an existing meeting.
 
 Parameters
 
@@ -139,13 +147,9 @@ Parameters
 | meetingId | required         |
 | password  | required         |
 
----
-
 ### Monitoring
 
----
-
-isMeetingRunning - check whether a meeting is running.
+1. **isMeetingRunning** - check whether a meeting is running.
 
 Parameters
 
@@ -153,27 +157,19 @@ Parameters
 | --------- | ---------------- |
 | meetingId | required         |
 
----
+2. **getMeetings** - get the list of a existing meetings.
 
-getMeetings - get the list of a existing meetings.
-
----
-
-getMeetingInfo - get details of an existing meeting.
+3) **getMeetingInfo** - get details of an existing meeting.
 
 Parameters
 
 | Parameter | Required/Otional |
 | --------- | ---------------- |
 | meetingId | required         |
-
----
 
 ### Recording
 
----
-
-getRecordings - get list of recordinngs.
+1. **getRecordings** - get list of recordinngs.
 
 Parameters
 
@@ -181,12 +177,10 @@ Parameters
 | --------- | ---------------- |
 | meetingId | optional         |
 | recordID  | optional         |
-| state     | required         |
+| state     | optional         |
 | meta      | optional         |
 
----
-
-publishRecordings - set publishing/unpublishing of a recording.
+2. **publishRecordings** - set publishing/unpublishing of a recording.
 
 Parameters
 
@@ -195,9 +189,7 @@ Parameters
 | recordID  | required         |
 | publish   | required         |
 
----
-
-deleteRecordings - delete an existing recording.
+3. **deleteRecordings** - delete an existing recording.
 
 Parameters
 
@@ -205,9 +197,7 @@ Parameters
 | --------- | ---------------- |
 | recordID  | required         |
 
----
-
-updateRecordings - update recording metadata.
+4. **updateRecordings** - update recording metadata.
 
 Parameters
 
@@ -216,7 +206,33 @@ Parameters
 | recordID  | required         |
 | meta      | optional         |
 
----
+### WebHooks
+
+1. **create** - create a new hook.
+
+Parameters
+
+| Parameter   | Required/Otional |
+| ----------- | ---------------- |
+| callbackURL | required         |
+| meetingID   | optional         |
+| getRaw      | optional         |
+
+2. **destroy** - remove an existing hook.
+
+Parameters
+
+| Parameter | Required/Otional |
+| --------- | ---------------- |
+| hookID    | required         |
+
+3. **list** - delete an existing recording.
+
+Parameters
+
+| Parameter | Required/Otional |
+| --------- | ---------------- |
+| meetingID | optional         |
 
 ## License
 
