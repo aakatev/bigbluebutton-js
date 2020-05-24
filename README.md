@@ -12,9 +12,22 @@ The document has several parts:
 - [WebHooks](#webhooks)
 - [Available Calls](#available-calls)
   - [Administration](#administration)
+    - [create - create a new meeting](#create---create-a-new-meeting)
+    - [join - join an existing meeting](#join---join-an-existing-meeting)
+    - [end - forcefully end an existing meeting](#end---forcefully-end-an-existing-meeting)
   - [Monitoring](#monitoring)
+    - [isMeetingRunning - check whether a meeting is running](#ismeetingrunning---check-whether-a-meeting-is-running)
+    - [getMeetings - get the list of a existing meetings](#getmeetings---get-the-list-of-a-existing-meetings)
+    - [getMeetingInfo - get details of an existing meeting](#getmeetinginfo---get-details-of-an-existing-meeting)
   - [Recording](#recording)
+    - [getRecordings - get list of recordinngs](#getrecordings---get-list-of-recordinngs)
+    - [publishRecordings - set publishing/unpublishing of a recording](#publishrecordings---set-publishingunpublishing-of-a-recording)
+    - [deleteRecordings - delete an existing recording](#deleterecordings---delete-an-existing-recording)
+    - [updateRecordings - update recording metadata](#updaterecordings---update-recording-metadata)
   - [WebHooks](#webhooks-1)
+    - [create - create a new hook](#create---create-a-new-hook)
+    - [destroy - remove an existing hook](#destroy---remove-an-existing-hook)
+    - [list - list existing hooks](#list---list-existing-hooks)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -76,7 +89,7 @@ Note that required parameters should be passed as function arguments, while opti
 
 ### Administration
 
-1. **create** - create a new meeting.
+#### create - create a new meeting
 
 Parameters
 
@@ -118,7 +131,7 @@ Parameters
 | lockSettingsLockOnJoinConfigurable | optional         |
 | guestPolicy                        | optional         |
 
-2. **join** - join an existing meeting.
+#### join - join an existing meeting
 
 Parameters
 
@@ -138,7 +151,7 @@ Parameters
 | joinViaHtml5  | optional         |
 | guest         | optional         |
 
-3. **end** - forcefully end an existing meeting.
+#### end - forcefully end an existing meeting
 
 Parameters
 
@@ -149,7 +162,7 @@ Parameters
 
 ### Monitoring
 
-1. **isMeetingRunning** - check whether a meeting is running.
+#### isMeetingRunning - check whether a meeting is running
 
 Parameters
 
@@ -157,9 +170,9 @@ Parameters
 | --------- | ---------------- |
 | meetingId | required         |
 
-2. **getMeetings** - get the list of a existing meetings.
+#### getMeetings - get the list of a existing meetings
 
-3) **getMeetingInfo** - get details of an existing meeting.
+#### getMeetingInfo - get details of an existing meeting
 
 Parameters
 
@@ -169,7 +182,7 @@ Parameters
 
 ### Recording
 
-1. **getRecordings** - get list of recordinngs.
+#### getRecordings - get list of recordinngs
 
 Parameters
 
@@ -180,7 +193,7 @@ Parameters
 | state     | optional         |
 | meta      | optional         |
 
-2. **publishRecordings** - set publishing/unpublishing of a recording.
+#### publishRecordings - set publishing/unpublishing of a recording
 
 Parameters
 
@@ -189,7 +202,7 @@ Parameters
 | recordID  | required         |
 | publish   | required         |
 
-3. **deleteRecordings** - delete an existing recording.
+#### deleteRecordings - delete an existing recording
 
 Parameters
 
@@ -197,7 +210,7 @@ Parameters
 | --------- | ---------------- |
 | recordID  | required         |
 
-4. **updateRecordings** - update recording metadata.
+#### updateRecordings - update recording metadata
 
 Parameters
 
@@ -208,7 +221,7 @@ Parameters
 
 ### WebHooks
 
-1. **create** - create a new hook.
+#### create - create a new hook
 
 Parameters
 
@@ -218,7 +231,7 @@ Parameters
 | meetingID   | optional         |
 | getRaw      | optional         |
 
-2. **destroy** - remove an existing hook.
+#### destroy - remove an existing hook
 
 Parameters
 
@@ -226,7 +239,7 @@ Parameters
 | --------- | ---------------- |
 | hookID    | required         |
 
-3. **list** - delete an existing recording.
+#### list - list existing hooks
 
 Parameters
 
