@@ -17,7 +17,7 @@ The document has several parts:
     - [end - forcefully end an existing meeting](#end---forcefully-end-an-existing-meeting)
   - [Monitoring](#monitoring)
     - [isMeetingRunning - check whether a meeting is running](#ismeetingrunning---check-whether-a-meeting-is-running)
-    - [getMeetings - get the list of a existing meetings](#getmeetings---get-the-list-of-a-existing-meetings)
+    - [getMeetings - get the list of existing meetings](#getmeetings---get-the-list-of-existing-meetings)
     - [getMeetingInfo - get details of an existing meeting](#getmeetinginfo---get-details-of-an-existing-meeting)
   - [Recording](#recording)
     - [getRecordings - get list of recordinngs](#getrecordings---get-list-of-recordinngs)
@@ -33,7 +33,8 @@ The document has several parts:
 
 ## Features
 
-- Provides methods to construct URLs;
+- Supports BBB API, and WebHooks;
+- Provides methods to construct URLs, and calculate SHA checksum;
 - Provides HTTP client that converts XML responses to JS objects.
 
 ## Installation
@@ -170,7 +171,7 @@ Parameters
 | --------- | ----------- | ---------------- |
 | meetingId | Meeting ID  | required         |
 
-#### getMeetings - get the list of a existing meetings
+#### getMeetings - get the list of existing meetings
 
 #### getMeetingInfo - get details of an existing meeting
 
