@@ -1,6 +1,6 @@
 # bigbluebutton-js
 
-JavaScript layer to interact with BigBlueButton [API](https://docs.bigbluebutton.org/dev/api).
+JavaScript layer to interact with BigBlueButton [API](https://docs.bigbluebutton.org/dev/api). Supports [WebHooks](https://docs.bigbluebutton.org/dev/webhooks.html).
 
 Features:
 
@@ -41,6 +41,18 @@ bbb.http(meetingCreateUrl).then((result) => {
   console.log(`End meeting link: ${meetingEndUrl}`)
 })
 ```
+
+## WebHooks
+
+This API allows third party applications to subscribe to a BBB meeting events. Events are propogated in form of HTTP Post requests. A list of events includes: a meeting was created, a user joined the meeting, a new presentation was uploaded, a user left the meeting, a recording is being processed, and some more.
+
+Note, WebHooks is a separate application, and you will neen to install it on your BBB server first. You can do it by running:
+
+```bash
+sudo apt-get install bbb-webhooks
+```
+
+For more information consult BBB official [docs](https://docs.bigbluebutton.org/dev/webhooks.html).
 
 ## Available Calls
 
