@@ -1,6 +1,7 @@
 require('dotenv').config()
 const bbb = require('../')
 const assert = require('assert')
+const TEST_HOOKS_TIMEOUT = 6000
 
 let api = bbb.api(process.env.BBB_URL, process.env.BBB_SECRET)
 let http = bbb.http
@@ -8,11 +9,13 @@ let http = bbb.http
 describe('Hooks Module Tests', () => {
   let hookID
   before(function () {
+    this.timeout(TEST_HOOKS_TIMEOUT)
     return http(api.hooks.create('https://mysite.com')).then((response) => {
       hookID = response.hookID
     })
   })
   after(function () {
+    this.timeout(TEST_HOOKS_TIMEOUT)
     return http(api.hooks.destroy(hookID))
   })
 
@@ -24,41 +27,24 @@ describe('Hooks Module Tests', () => {
   })
 })
 
-// let meetingCreateUrl = api.administration.create('My Meeting', '1', {
-//   duration: 2,
-//   attendeePW: 'secret',
-//   moderatorPW: 'supersecret',
-// })
+describe('Administration and Monitoring Modules Tests', () => {
+  before(function () {
+    this.timeout(TEST_HOOKS_TIMEOUT)
+    return http(
+      api.administration.create('Test Meeting', '42', { duration: 1 })
+    )
+  })
+  after(function () {
+    this.timeout(TEST_HOOKS_TIMEOUT)
+    return http(api.administration.end('42'))
+  })
 
-// bbb
-//   .http(meetingCreateUrl)
-//   .then((result) => {
-//     console.log(result)
-
-//     let moderatorUrl = api.administration.join('moderator', '1', 'supersecret')
-//     let attendeeUrl = api.administration.join('attendee', '1', 'secret')
-//     console.log(
-//       `Moderator link: ${moderatorUrl}\nAttendee link: ${attendeeUrl}`
-//     )
-
-//     let meetingEndUrl = api.administration.end('1', 'supersecret')
-//     console.log(`End meeting link: ${meetingEndUrl}`)
-//   })
-//   .catch(console.log)
-
-// let options = {
-//   record: false,
-//   duration: 2,
-//   attendeePW: 'secret',
-//   moderatorPW: 'supersecret',
-// }
-
-// let meeting = api.administration.create('Test Meeting', '1', options)
-
-// let moderator = api.administration.join('Moderator', '1', 'supersecret')
-// let attendee = api.administration.join('Attendee', '1', 'secret')
-
-// let meetingInfo = api.monitoring.getMeetingInfo('1')
-// let meetings = api.monitoring.getMeetings()
-
-// console.log(meeting, moderator, attendee, meetingInfo, meetings)
+  it('Get Meetings', () => {
+    return http(api.monitoring.getMeetingInfo('42')).then((response) => {
+      assert.equal(response.returncode, 'SUCCESS')
+      assert.equal(response.meetingName, 'Test Meeting')
+      assert.equal(response.meetingID, '42')
+      assert.equal(response.duration, 1)
+    })
+  })
+})

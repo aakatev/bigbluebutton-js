@@ -28,6 +28,7 @@ The document has several parts:
     - [create - create a new hook](#create---create-a-new-hook)
     - [destroy - remove an existing hook](#destroy---remove-an-existing-hook)
     - [list - list existing hooks](#list---list-existing-hooks)
+- [Tests](#tests)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
@@ -247,6 +248,21 @@ Parameters
 | Parameter | Description | Required/Otional |
 | --------- | ----------- | ---------------- |
 | meetingID | Meeting ID  | optional         |
+
+## Tests
+
+To run the test suites some prior configuration is required. First, create a `.env` file in library root. The file should have the following content:
+
+```
+BBB_URL=https://my-site.com/bigbluebutton
+BBB_SECRET=MySuperSecretSharedToken
+```
+
+Make sure, you installed development dependencies ([mocha](https://www.npmjs.com/package/mocha), and [dotenv](https://www.npmjs.com/package/dotenv)). Now you can run `npm run test`:
+
+```bash
+npm run test
+```
 
 ## License
 
