@@ -18,8 +18,12 @@ function constructUrl(host, salt, action, params) {
 }
 
 function httpClient(url) {
-  return axios(url)
-    .then((response) => response.data)
+  return axios(url, {
+    headers: { Accept: 'text/xml, application/json, text/plain, */*' },
+  })
+    .then((response) => {
+      return response.data
+    })
     .then(function (xml) {
       return parser.parse(xml).response
     })
