@@ -9,7 +9,9 @@ The document has several parts:
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [WebHooks](#webhooks)
+  - [API Calls Example](#api-calls-example)
+  - [WebHooks](#webhooks)
+  - [WebHooks Example](#webhooks-example)
 - [Available Calls](#available-calls)
   - [Administration](#administration)
     - [create - create a new meeting](#create---create-a-new-meeting)
@@ -46,12 +48,15 @@ npm i bigbluebutton-js
 
 ## Usage
 
+### API Calls Example
+
 ```javascript
 const bbb = require('bigbluebutton-js')
 
 // BBB_URL and BBB_SECRET can be obtained
 // by running bbb-conf --secret on your BBB server
 let api = bbb.api(BBB_URL, BBB_SECRET)
+let http = bbb.http
 
 // api module itslef is responsible for constructing URLs
 let meetingCreateUrl = api.administration.create('My Meeting', '1', {
@@ -73,14 +78,55 @@ bbb.http(meetingCreateUrl).then((result) => {
 })
 ```
 
-## WebHooks
+### WebHooks
 
-This API allows third party applications to subscribe to a BBB meeting events. Events are propogated in form of HTTP Post requests. A list of events includes: a meeting was created, a user joined the meeting, a new presentation was uploaded, a user left the meeting, a recording is being processed, and some more.
+This API allows third party applications to subscribe to a BBB meeting events. Events are propogated in form of HTTP POST requests. A list of events includes: a meeting was created, a user joined the meeting, a new presentation was uploaded, a user left the meeting, a recording is being processed, and some more.
 
 Note, WebHooks is a separate application, and you will neen to install it on your BBB server first. You can do it by running:
 
 ```bash
 sudo apt-get install bbb-webhooks
+```
+
+### WebHooks Example
+
+This example is using [express](https://www.npmjs.com/package/express) as a subscribed server. In reality, you can use any endpoint listenning to HTTP POST requests.
+
+First, you create your hook on BBB server. Let's say your POST endpoint is listenning at `https://mysite.com/bbb/hooks`, then the script will look the following way:
+
+```javascript
+const bbb = require('bigbluebutton-js')
+
+// BBB_URL and BBB_SECRET can be obtained
+// by running bbb-conf --secret on your BBB server
+let api = bbb.api(BBB_URL, BBB_SECRET)
+
+bbb
+  .http(api.hooks.create('https://mysite.com/bbb/hooks'))
+  .then(console.log)
+  .catch(console.log)
+```
+
+Example of the POST endpoint:
+
+```javascript
+const express = require('express')
+const app = express()
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.post('/bbb/hooks', function (req, res) {
+  let event = JSON.parse(req.body.event)
+
+  // Expand json before loging it
+  console.log(
+    require('util').inspect(event, { showHidden: false, depth: null })
+  )
+  res.json({})
+})
+
+app.listen(3001)
 ```
 
 For more information consult BBB official [docs](https://docs.bigbluebutton.org/dev/webhooks.html).
@@ -254,7 +300,7 @@ Parameters
 To run the test suites some prior configuration is required. First, create a `.env` file in library root. The file should have the following content:
 
 ```
-BBB_URL=https://my-site.com/bigbluebutton
+BBB_URL=https://mysite.com/bigbluebutton
 BBB_SECRET=MySuperSecretSharedToken
 ```
 
