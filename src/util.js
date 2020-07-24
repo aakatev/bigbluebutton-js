@@ -29,7 +29,12 @@ function httpClient(url) {
     })
 }
 
+function normalizeUrl(url) {
+  return /\/$/.test(url) ? url.slice(0, -1) : url
+}
+
 module.exports = {
   httpClient,
   constructUrl,
+  normalizeUrl,
 }

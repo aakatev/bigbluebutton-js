@@ -2,43 +2,14 @@
 
 JavaScript layer to interact with BigBlueButton [API](https://docs.bigbluebutton.org/dev/api). Supports [WebHooks](https://docs.bigbluebutton.org/dev/webhooks.html).
 
-## Overview <!-- omit in toc -->
-
-The document has several parts:
-
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [API Calls Example](#api-calls-example)
-  - [WebHooks](#webhooks)
-  - [WebHooks Example](#webhooks-example)
-- [Available Calls](#available-calls)
-  - [Administration](#administration)
-    - [create - create a new meeting](#create---create-a-new-meeting)
-    - [join - join an existing meeting](#join---join-an-existing-meeting)
-    - [end - forcefully end an existing meeting](#end---forcefully-end-an-existing-meeting)
-  - [Monitoring](#monitoring)
-    - [isMeetingRunning - check whether a meeting is running](#ismeetingrunning---check-whether-a-meeting-is-running)
-    - [getMeetings - get the list of existing meetings](#getmeetings---get-the-list-of-existing-meetings)
-    - [getMeetingInfo - get details of an existing meeting](#getmeetinginfo---get-details-of-an-existing-meeting)
-  - [Recording](#recording)
-    - [getRecordings - get list of recordinngs](#getrecordings---get-list-of-recordinngs)
-    - [publishRecordings - set publishing/unpublishing of a recording](#publishrecordings---set-publishingunpublishing-of-a-recording)
-    - [deleteRecordings - delete an existing recording](#deleterecordings---delete-an-existing-recording)
-    - [updateRecordings - update recording metadata](#updaterecordings---update-recording-metadata)
-  - [WebHooks](#webhooks-1)
-    - [create - create a new hook](#create---create-a-new-hook)
-    - [destroy - remove an existing hook](#destroy---remove-an-existing-hook)
-    - [list - list existing hooks](#list---list-existing-hooks)
-- [Tests](#tests)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
+### [Official Documentation](https://aakatev.github.io/bigbluebutton-js-docs/)
 
 ## Features
 
-- Supports BBB API, and WebHooks;
-- Provides methods to construct URLs, and calculate SHA checksum;
-- Provides HTTP client that converts XML responses to JS objects.
+- Supports BBB API, and WebHooks
+- Provides methods to construct URLs, and calculate SHA checksum
+- Provides HTTP client that converts XML responses to JS objects
+- Works with Node 10 or newer
 
 ## Installation
 
