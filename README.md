@@ -1,5 +1,3 @@
-# bigbluebutton-js <!-- omit in toc -->
-
 [![BigBlueButtonJs Logo](https://aakatev.github.io/bigbluebutton-js-docs/images/logo.png)](https://aakatev.github.io/bigbluebutton-js-docs/)
 
 JavaScript layer to interact with BigBlueButton [API](https://docs.bigbluebutton.org/dev/api). Supports [WebHooks](https://docs.bigbluebutton.org/dev/webhooks.html).
