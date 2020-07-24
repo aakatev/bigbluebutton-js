@@ -2,7 +2,7 @@
 
 JavaScript layer to interact with BigBlueButton [API](https://docs.bigbluebutton.org/dev/api). Supports [WebHooks](https://docs.bigbluebutton.org/dev/webhooks.html).
 
-### [Official Documentation](https://aakatev.github.io/bigbluebutton-js-docs/)
+## [Read Official Documentation](https://aakatev.github.io/bigbluebutton-js-docs/)
 
 ## Features
 
@@ -19,252 +19,64 @@ npm i bigbluebutton-js
 
 ## Usage
 
-### API Calls Example
+You will need to provide BigBlueButton URL and secret to the script. You can obtain them by logging into you BBB server, and running:
+
+```bash
+bbb-conf --secret
+```
+
+Use the obtained values in your script:
 
 ```javascript
 const bbb = require('bigbluebutton-js')
+let api = bbb.api(
+    process.env.BBB_URL, 
+    process.enc.BBB_SECRET
+  )
+```
+For comprehensive getting started section, see [official docs](https://aakatev.github.io/bigbluebutton-js-docs/docs/getting-started/).
 
+## Examples
+
+The following example shows how to create a room, and links for moderator and attendee to join:
+
+```javascript
+const bbb = require('bigbluebutton-js')
+ 
 // BBB_URL and BBB_SECRET can be obtained
 // by running bbb-conf --secret on your BBB server
-let api = bbb.api(BBB_URL, BBB_SECRET)
+// refer to Getting Started for more information
+let api = bbb.api(
+    process.env.BBB_URL, 
+    process.enc.BBB_SECRET
+  )
 let http = bbb.http
-
+ 
 // api module itslef is responsible for constructing URLs
 let meetingCreateUrl = api.administration.create('My Meeting', '1', {
   duration: 2,
   attendeePW: 'secret',
   moderatorPW: 'supersecret',
 })
-
+ 
 // http method should be used in order to make calls
 bbb.http(meetingCreateUrl).then((result) => {
   console.log(result)
-
+ 
   let moderatorUrl = api.administration.join('moderator', '1', 'supersecret')
   let attendeeUrl = api.administration.join('attendee', '1', 'secret')
   console.log(`Moderator link: ${moderatorUrl}\nAttendee link: ${attendeeUrl}`)
-
+ 
   let meetingEndUrl = api.administration.end('1', 'supersecret')
   console.log(`End meeting link: ${meetingEndUrl}`)
 })
 ```
 
-### WebHooks
+For comprehensive examples section, see [official docs](https://aakatev.github.io/bigbluebutton-js-docs/docs/getting-started/examples/).
 
-This API allows third party applications to subscribe to a BBB meeting events. Events are propogated in form of HTTP POST requests. A list of events includes: a meeting was created, a user joined the meeting, a new presentation was uploaded, a user left the meeting, a recording is being processed, and some more.
+## Reference
 
-Note, WebHooks is a separate application, and you will neen to install it on your BBB server first. You can do it by running:
-
-```bash
-sudo apt-get install bbb-webhooks
-```
-
-### WebHooks Example
-
-This example is using [express](https://www.npmjs.com/package/express) as a subscribed server. In reality, you can use any endpoint listenning to HTTP POST requests.
-
-First, you create your hook on BBB server. Let's say your POST endpoint is listenning at `https://mysite.com/bbb/hooks`, then the script will look the following way:
-
-```javascript
-const bbb = require('bigbluebutton-js')
-
-// BBB_URL and BBB_SECRET can be obtained
-// by running bbb-conf --secret on your BBB server
-let api = bbb.api(BBB_URL, BBB_SECRET)
-
-bbb
-  .http(api.hooks.create('https://mysite.com/bbb/hooks'))
-  .then(console.log)
-  .catch(console.log)
-```
-
-Example of the POST endpoint:
-
-```javascript
-const express = require('express')
-const app = express()
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-app.post('/bbb/hooks', function (req, res) {
-  let event = JSON.parse(req.body.event)
-
-  // Expand json before loging it
-  console.log(
-    require('util').inspect(event, { showHidden: false, depth: null })
-  )
-  res.json({})
-})
-
-app.listen(3001)
-```
-
-For more information consult BBB official [docs](https://docs.bigbluebutton.org/dev/webhooks.html).
-
-## Available Calls
-
-Note that required parameters should be passed as function arguments, while optional can be passed as options object. More information is available in this section of [BBB docs](https://docs.bigbluebutton.org/dev/api.html#api-calls).
-
-### Administration
-
-#### create - create a new meeting
-
-Parameters
-
-| Parameter                          | Description                                                      | Required/Otional         |
-| ---------------------------------- | ---------------------------------------------------------------- | ------------------------ |
-| name                               | Meeting name                                                     | required                 |
-| meetingId                          | Meeting ID                                                       | required                 |
-| attendeePW                         | Attendee password                                                | optional                 |
-| moderatorPW                        | Moderator password                                               | optional                 |
-| welcome                            | Chat welcome message                                             | optional                 |
-| dialNumber                         | Cell phone access number                                         | optional                 |
-| voiceBridge                        | FreeSWITCH voice conference number                               | optional                 |
-| maxParticipants                    | Maximum maximum number of participants                           | optional                 |
-| logoutURL                          | Redirect URL after logout                                        | optional                 |
-| record                             | Enable/disable meeting record                                    | optional                 |
-| duration                           | Meeting maximum duration                                         | optional                 |
-| isBreakout                         | `true` for a breakout rooms                                      | required (breakout room) |
-| parentMeetingID                    | Top-level meeting id of the breakout room                        | required (breakout Room) |
-| sequence                           | Breakout room sequence number                                    | required (breakout Room) |
-| freeJoin                           | `true` allows user to have a choice of a breakout room to join   | optional (breakout Room) |
-| meta                               | Meeting metadata                                                 | optional                 |
-| moderatorOnlyMessage               | Moderator only chat message                                      | optional                 |
-| autoStartRecording                 | `true` will instruct to start recording on first user join       | optional                 |
-| allowStartStopRecording            | Allow users to start/stop recordings                             | optional                 |
-| webcamsOnlyForModerator            | Users webcams are only seeing by moderators                      | optional                 |
-| logo                               | Default logo in Flash client                                     | optional                 |
-| bannerText                         | Banner text                                                      | optional                 |
-| bannerColor                        | Banner background color                                          | optional                 |
-| copyright                          | Copyright text                                                   | optional                 |
-| muteOnStart                        | Mute all users on meeting start                                  | optional                 |
-| allowModsToUnmuteUsers             | Allow moderators to unmute users                                 | optional                 |
-| lockSettingsDisableCam             | `true` will prevent users from sharing webcams                   | optional                 |
-| lockSettingsDisableMic             | `true` will prevent users from sharing microphones               | optional                 |
-| lockSettingsDisablePrivateChat     | `true` will disable private chats                                | optional                 |
-| lockSettingsDisablePublicChat      | `true` will disable public chat                                  | optional                 |
-| lockSettingsDisableNote            | `true` will disable notes                                        | optional                 |
-| lockSettingsLockedLayout           | `true` will lock meeting layout                                  | optional                 |
-| lockSettingsLockOnJoin             | `false` will disable applying settings                           | optional                 |
-| lockSettingsLockOnJoinConfigurable | `true` will allow applying `lockSettingsLockOnJoin`              | optional                 |
-| guestPolicy                        | Possible values: `ALWAYS_ACCEPT`, `ALWAYS_DENY`, `ASK_MODERATOR` | optional                 |
-
-#### join - join an existing meeting
-
-Parameters
-
-| Parameter     | Description                                                                                            | Required/Otional        |
-| ------------- | ------------------------------------------------------------------------------------------------------ | ----------------------- |
-| fullName      | Users full name                                                                                        | required                |
-| meetingId     | Meeting ID                                                                                             | required                |
-| password      | Attendee/moderator password                                                                            | required                |
-| createTime    | If provided, parameter should match meeting `createTime`                                               | optional                |
-| userID        | User ID                                                                                                | optional                |
-| webVoiceConf  | Custom voip voice extension                                                                            | optional                |
-| configToken   | Apply custom configuration associated with the token                                                   | optional                |
-| defaultLayout | Layout to load on user join                                                                            | optional                |
-| avatarURL     | Link to user avatar ([#8566](https://github.com/bigbluebutton/bigbluebutton/issues/8566))              | optional                |
-| redirect      | Custom redirect behaviour of join API ([learn more](https://docs.bigbluebutton.org/dev/api.html#join)) | optional (experimental) |
-| clientURL     | Display custom url ([learn more](https://docs.bigbluebutton.org/dev/api.html#join))                    | optional (experimental) |
-| joinViaHtml5  | `true` to force HTML5                                                                                  | optional                |
-| guest         | `true` for guest users                                                                                 | optional                |
-
-#### end - forcefully end an existing meeting
-
-Parameters
-
-| Parameter | Description        | Required/Otional |
-| --------- | ------------------ | ---------------- |
-| meetingId | Meeting ID         | required         |
-| password  | Moderator password | required         |
-
-### Monitoring
-
-#### isMeetingRunning - check whether a meeting is running
-
-Parameters
-
-| Parameter | Description | Required/Otional |
-| --------- | ----------- | ---------------- |
-| meetingId | Meeting ID  | required         |
-
-#### getMeetings - get the list of existing meetings
-
-#### getMeetingInfo - get details of an existing meeting
-
-Parameters
-
-| Parameter | Description | Required/Otional |
-| --------- | ----------- | ---------------- |
-| meetingId | Meeting ID  | required         |
-
-### Recording
-
-#### getRecordings - get list of recordinngs
-
-Parameters
-
-| Parameter | Description                                                                                               | Required/Otional |
-| --------- | --------------------------------------------------------------------------------------------------------- | ---------------- |
-| meetingId | Meeting ID                                                                                                | optional         |
-| recordID  | Recordings record ID                                                                                      | optional         |
-| state     | Recordings state (possible values: `processing`, `processed`, `published`,`unpublished`,`deleted`, `any`) | optional         |
-| meta      | Recordings metadata                                                                                       | optional         |
-
-#### publishRecordings - set publishing/unpublishing of a recording
-
-Parameters
-
-| Parameter | Description             | Required/Otional |
-| --------- | ----------------------- | ---------------- |
-| recordID  | Recordings record ID    | required         |
-| publish   | `true` or `false` value | required         |
-
-#### deleteRecordings - delete an existing recording
-
-Parameters
-
-| Parameter | Description          | Required/Otional |
-| --------- | -------------------- | ---------------- |
-| recordID  | Recordings record ID | required         |
-
-#### updateRecordings - update recording metadata
-
-Parameters
-
-| Parameter | Description          | Required/Otional |
-| --------- | -------------------- | ---------------- |
-| recordID  | Recordings record ID | required         |
-| meta      | Recordings metadata  | optional         |
-
-### WebHooks
-
-#### create - create a new hook
-
-Parameters
-
-| Parameter   | Description                         | Required/Otional |
-| ----------- | ----------------------------------- | ---------------- |
-| callbackURL | Callback URL to receive events      | required         |
-| meetingID   | Meeting ID                          | optional         |
-| getRaw      | `true` set events to be unprocessed | optional         |
-
-#### destroy - remove an existing hook
-
-Parameters
-
-| Parameter | Description | Required/Otional |
-| --------- | ----------- | ---------------- |
-| hookID    | Hooks ID    | required         |
-
-#### list - list existing hooks
-
-Parameters
-
-| Parameter | Description | Required/Otional |
-| --------- | ----------- | ---------------- |
-| meetingID | Meeting ID  | optional         |
+Our reference is divided into two sections: [API](https://aakatev.github.io/bigbluebutton-js-docs/docs/reference/api/) and [WebHooks](https://aakatev.github.io/bigbluebutton-js-docs/docs/reference/webhooks/).
 
 ## Tests
 
