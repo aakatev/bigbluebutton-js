@@ -33,8 +33,13 @@ function normalizeUrl(url) {
   return /\/$/.test(url) ? url.slice(0, -1) : url
 }
 
+function getPathname(url, host) {
+  return url.replace(host, '')
+}
+
 module.exports = {
   httpClient,
   constructUrl,
   normalizeUrl,
+  getPathname,
 }
