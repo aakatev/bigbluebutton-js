@@ -1,4 +1,4 @@
-## 1.0.0
+## 0.1.0
 
 - node native crpyto module replaced with hash.js
 - added browser-compatible build

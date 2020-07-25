@@ -4,6 +4,8 @@ JavaScript layer to interact with BigBlueButton [API](https://docs.bigbluebutton
 
 ## [Read the Official Documentation](https://aakatev.github.io/bigbluebutton-js-docs/)
 
+## [Follow the Changelog](https://github.com/aakatev/bigbluebutton-js/tree/master/CHANGELOG.md)
+
 ## Features
 
 - Supports BBB API, and WebHooks
