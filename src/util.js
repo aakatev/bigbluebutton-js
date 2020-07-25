@@ -37,9 +37,14 @@ function getPathname(url, host) {
   return url.replace(host, '')
 }
 
+function parseXml(xml) {
+  return parser.parse(xml)
+}
+
 module.exports = {
   httpClient,
   constructUrl,
   normalizeUrl,
   getPathname,
+  parseXml,
 }
