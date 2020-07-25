@@ -1,3 +1,9 @@
+## 1.0.0
+
+- node native crpyto module replaced with hash.js
+- added browser-compatible build
+- utils are now available to external libraries
+
 ## 0.0.8
 
 - URL normalizer added

@@ -2,12 +2,12 @@
 
 const axios = require('axios')
 const querystring = require('querystring')
-const crypto = require('crypto')
+const crypto = require('hash.js')
 const parser = require('fast-xml-parser')
 
 function getChecksum(callName, queryParams, sharedSecret) {
   return crypto
-    .createHash('sha1')
+    .sha1()
     .update(`${callName}${querystring.encode(queryParams)}${sharedSecret}`)
     .digest('hex')
 }

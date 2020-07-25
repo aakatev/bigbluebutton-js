@@ -10,6 +10,7 @@ JavaScript layer to interact with BigBlueButton [API](https://docs.bigbluebutton
 - Provides methods to construct URLs, and calculate SHA checksum
 - Provides HTTP client that converts XML responses to JS objects
 - Works with Node 10 or newer
+- Works in browser (['dist/browser.js'](https://github.com/aakatev/bigbluebutton-js/tree/master/dist/browser.js))
 
 ## Installation
 
