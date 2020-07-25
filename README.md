@@ -31,7 +31,7 @@ Use the obtained values in your script:
 const bbb = require('bigbluebutton-js')
 let api = bbb.api(
     process.env.BBB_URL, 
-    process.enc.BBB_SECRET
+    process.env.BBB_SECRET
   )
 ```
 For comprehensive getting started section, see [official docs](https://aakatev.github.io/bigbluebutton-js-docs/docs/getting-started/).
@@ -48,7 +48,7 @@ const bbb = require('bigbluebutton-js')
 // refer to Getting Started for more information
 let api = bbb.api(
     process.env.BBB_URL, 
-    process.enc.BBB_SECRET
+    process.env.BBB_SECRET
   )
 let http = bbb.http
  
@@ -60,7 +60,7 @@ let meetingCreateUrl = api.administration.create('My Meeting', '1', {
 })
  
 // http method should be used in order to make calls
-bbb.http(meetingCreateUrl).then((result) => {
+http(meetingCreateUrl).then((result) => {
   console.log(result)
  
   let moderatorUrl = api.administration.join('moderator', '1', 'supersecret')
