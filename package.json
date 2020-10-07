@@ -1,6 +1,6 @@
 {
   "name": "bigbluebutton-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "JavaScript wrapper for BigBlueButton API",
   "private": false,
   "main": "src/index.js",
@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/aakatev/bigbluebutton-js/issues"
   },
-  "homepage": "https://github.com/aakatev/bigbluebutton-js/#readme",
+  "homepage": "https://bigbluebutton.network/",
   "dependencies": {
     "axios": "^0.19.2",
     "fast-xml-parser": "^3.17.2",

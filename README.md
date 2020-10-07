@@ -1,8 +1,8 @@
-[![BigBlueButtonJs Logo](https://aakatev.github.io/bigbluebutton-js-docs/images/logo.png)](https://aakatev.github.io/bigbluebutton-js-docs/)
+[![BigBlueButtonJs Logo](https://bigbluebutton.network/images/logo.png)](https://bigbluebutton.network)
 
 JavaScript layer to interact with BigBlueButton [API](https://docs.bigbluebutton.org/dev/api). Supports [WebHooks](https://docs.bigbluebutton.org/dev/webhooks.html).
 
-## [Read the Official Documentation](https://aakatev.github.io/bigbluebutton-js-docs/)
+## [Read the Official Documentation](https://bigbluebutton.network/)
 
 ## [Follow the Changelog](https://github.com/aakatev/bigbluebutton-js/tree/master/CHANGELOG.md)
 
@@ -37,7 +37,7 @@ let api = bbb.api(
     process.env.BBB_SECRET
   )
 ```
-For comprehensive getting started section, see [official docs](https://aakatev.github.io/bigbluebutton-js-docs/docs/getting-started/).
+For comprehensive getting started section, see [official docs](https://bigbluebutton.network/docs/getting-started/).
 
 ## Examples
 
@@ -75,11 +75,11 @@ http(meetingCreateUrl).then((result) => {
 })
 ```
 
-For comprehensive examples section, see [official docs](https://aakatev.github.io/bigbluebutton-js-docs/docs/getting-started/examples/).
+For comprehensive examples section, see [official docs](https://bigbluebutton.network/docs/getting-started/examples/).
 
 ## Reference
 
-Our reference is divided into two sections: [API](https://aakatev.github.io/bigbluebutton-js-docs/docs/reference/api/) and [WebHooks](https://aakatev.github.io/bigbluebutton-js-docs/docs/reference/webhooks/).
+Our reference is divided into two sections: [API](https://bigbluebutton.network/docs/reference/api/) and [WebHooks](https://bigbluebutton.network/docs/reference/webhooks/).
 
 ## Tests
 
