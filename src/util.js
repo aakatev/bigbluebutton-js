@@ -25,7 +25,7 @@ function httpClient(url) {
       return response.data
     })
     .then(function (xml) {
-      return parser.parse(xml).response
+      return parseXml(xml)
     })
 }
 
@@ -37,9 +37,26 @@ function getPathname(url, host) {
   return url.replace(host, '')
 }
 
+function parseXml(xml) {
+  const json = parser.parse(xml).response
+
+  if(json.meetings) {
+    let meetings = json.meetings ? json.meetings.meeting : []
+    meetings = Array.isArray(meetings) ? meetings : [meetings]
+    json.meetings = meetings
+  }  
+  if (json.recordings) {
+    let recordings = json.recordings ? json.recordings.recording : []
+    recordings = Array.isArray(recordings) ? recordings : [recordings]
+    json.recordings = recordings
+  }
+  return json
+}
+
 module.exports = {
   httpClient,
   constructUrl,
   normalizeUrl,
   getPathname,
+  parseXml,
 }

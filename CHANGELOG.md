@@ -1,3 +1,8 @@
+## 0.2.0
+
+- (Fix) XML parser is now consistent no matter how many meetings or recordings are returned (Used to return single object or array for two or more objects)
+- Added examples of usage
+
 ## 0.1.0
 
 - node native crpyto module replaced with hash.js

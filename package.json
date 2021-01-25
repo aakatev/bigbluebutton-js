@@ -1,12 +1,13 @@
 {
   "name": "bigbluebutton-js",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "JavaScript wrapper for BigBlueButton API",
   "private": false,
   "main": "src/index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "test": "mocha"
+    "test": "mocha",
+    "example": "node examples/meetings.js | jq"
   },
   "repository": {
     "type": "git",
