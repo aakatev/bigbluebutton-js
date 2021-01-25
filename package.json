@@ -24,7 +24,7 @@
   },
   "homepage": "https://bigbluebutton.network/",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "fast-xml-parser": "^3.17.2",
     "hash.js": "^1.1.7"
   },
