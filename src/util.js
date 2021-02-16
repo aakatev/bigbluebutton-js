@@ -12,9 +12,9 @@ function getChecksum(callName, queryParams, sharedSecret) {
     .digest('hex')
 }
 
-function constructUrl(host, salt, action, params) {
-  params.checksum = getChecksum(action, params, salt)
-  return `${host}/api/${action}?${querystring.encode(params)}`
+function constructUrl(options, action, params) {
+  params.checksum = getChecksum(action, params, options.salt)
+  return `${options.host}/api/${action}?${querystring.encode(params)}`
 }
 
 function httpClient(url) {
@@ -44,7 +44,7 @@ function parseXml(xml) {
     let meetings = json.meetings ? json.meetings.meeting : []
     meetings = Array.isArray(meetings) ? meetings : [meetings]
     json.meetings = meetings
-  }  
+  }
   if (json.recordings) {
     let recordings = json.recordings ? json.recordings.recording : []
     recordings = Array.isArray(recordings) ? recordings : [recordings]

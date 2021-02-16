@@ -2,13 +2,14 @@
 
 let { normalizeUrl } = require('./util')
 
-function api(host, salt) {
-  host = normalizeUrl(host)
+function api(host, salt, options = {}) {
+  options.host = normalizeUrl(host)
+  options.salt = salt
 
-  let administration = require('./administration')(host, salt)
-  let monitoring = require('./monitoring')(host, salt)
-  let recording = require('./recording')(host, salt)
-  let hooks = require('./hooks')(host, salt)
+  let administration = require('./administration')(options)
+  let monitoring = require('./monitoring')(options)
+  let recording = require('./recording')(options)
+  let hooks = require('./hooks')(options)
 
   return {
     administration,

@@ -2,25 +2,25 @@
 
 const util = require('./util')
 
-function monitoring(host, salt) {
+function monitoring(options) {
   function getMeetingInfo(meetingID) {
     let qparams = {
       meetingID: meetingID,
     }
 
-    return util.constructUrl(host, salt, 'getMeetingInfo', qparams)
+    return util.constructUrl(options, 'getMeetingInfo', qparams)
   }
   function isMeetingRunning(meetingID) {
     let qparams = {
       meetingID: meetingID,
     }
 
-    return util.constructUrl(host, salt, 'isMeetingRunning', qparams)
+    return util.constructUrl(options, 'isMeetingRunning', qparams)
   }
   function getMeetings() {
     let qparams = {}
 
-    return util.constructUrl(host, salt, 'getMeetings', qparams)
+    return util.constructUrl(options, 'getMeetings', qparams)
   }
   return {
     getMeetingInfo,
