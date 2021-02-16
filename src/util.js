@@ -5,15 +5,14 @@ const querystring = require('querystring')
 const crypto = require('hash.js')
 const parser = require('fast-xml-parser')
 
-function getChecksum(callName, queryParams, sharedSecret) {
-  return crypto
-    .sha1()
+function getChecksum(callName, queryParams, sharedSecret, hashMethod = 'sha1') {
+  return crypto[hashMethod]()
     .update(`${callName}${querystring.encode(queryParams)}${sharedSecret}`)
     .digest('hex')
 }
 
 function constructUrl(options, action, params) {
-  params.checksum = getChecksum(action, params, options.salt)
+  params.checksum = getChecksum(action, params, options.salt, options.hashMethod)
   return `${options.host}/api/${action}?${querystring.encode(params)}`
 }
 
