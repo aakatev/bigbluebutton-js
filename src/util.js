@@ -5,16 +5,15 @@ const querystring = require('querystring')
 const crypto = require('hash.js')
 const parser = require('fast-xml-parser')
 
-function getChecksum(callName, queryParams, sharedSecret) {
-  return crypto
-    .sha1()
+function getChecksum(callName, queryParams, sharedSecret, hashMethod = 'sha1') {
+  return crypto[hashMethod]()
     .update(`${callName}${querystring.encode(queryParams)}${sharedSecret}`)
     .digest('hex')
 }
 
-function constructUrl(host, salt, action, params) {
-  params.checksum = getChecksum(action, params, salt)
-  return `${host}/api/${action}?${querystring.encode(params)}`
+function constructUrl(options, action, params) {
+  params.checksum = getChecksum(action, params, options.salt, options.hashMethod)
+  return `${options.host}/api/${action}?${querystring.encode(params)}`
 }
 
 function httpClient(url) {
@@ -44,7 +43,7 @@ function parseXml(xml) {
     let meetings = json.meetings ? json.meetings.meeting : []
     meetings = Array.isArray(meetings) ? meetings : [meetings]
     json.meetings = meetings
-  }  
+  }
   if (json.recordings) {
     let recordings = json.recordings ? json.recordings.recording : []
     recordings = Array.isArray(recordings) ? recordings : [recordings]

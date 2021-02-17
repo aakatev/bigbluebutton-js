@@ -2,11 +2,11 @@
 
 const util = require('./util')
 
-function recording(host, salt) {
+function recording(options) {
   function getRecordings(kwparams) {
     kwparams = { ...kwparams }
 
-    return util.constructUrl(host, salt, 'getRecordings', kwparams)
+    return util.constructUrl(options, 'getRecordings', kwparams)
   }
   function publishRecordings(recordID, publish) {
     let qparams = {
@@ -14,21 +14,21 @@ function recording(host, salt) {
       publish: publish,
     }
 
-    return util.constructUrl(host, salt, 'publishRecordings', qparams)
+    return util.constructUrl(options, 'publishRecordings', qparams)
   }
   function deleteRecordings(recordID) {
     let qparams = {
       recordID: recordID,
     }
 
-    return util.constructUrl(host, salt, 'deleteRecordings', qparams)
+    return util.constructUrl(options, 'deleteRecordings', qparams)
   }
   function updateRecordings(recordID, kwparams) {
     kwparams = { ...kwparams }
 
     kwparams.recordID = recordID
 
-    return util.constructUrl(host, salt, 'updateRecordings', kwparams)
+    return util.constructUrl(options, 'updateRecordings', kwparams)
   }
   return {
     getRecordings,
