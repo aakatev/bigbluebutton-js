@@ -55,7 +55,7 @@ let api = bbb.api(
   )
 let http = bbb.http
  
-// api module itslef is responsible for constructing URLs
+// api module itself is responsible for constructing URLs
 let meetingCreateUrl = api.administration.create('My Meeting', '1', {
   duration: 2,
   attendeePW: 'secret',
